@@ -66,21 +66,33 @@ Deployment:
 ## System Architecture
 
 Employee / Resolver / Admin
-         ↓
-Azure Static Web Apps
-         ↓
-FastAPI Backend
-     ↙       ↘
-Aiven MySQL   n8n
-                 ↓
-           Google Gemini
-                 ↓
-    Category / Priority /
-    Summary / Suggested Response
-                 ↓
-       Automatic Assignment
-                 ↓
-              Resolver
+            │
+            ▼
+     Azure Static Web Apps
+            │
+            ▼
+       FastAPI Backend
+            │
+      ┌─────┴─────┐
+      ▼           ▼
+ Aiven MySQL    REST APIs
+                    │
+                    ▼
+                   n8n
+                    │
+                    ▼
+              Google Gemini
+                    │
+          ┌─────────┼─────────┐
+          ▼         ▼         ▼
+       Category   Priority   Summary
+          │         │         │
+          └─────────┼─────────┘
+                    ▼
+             Auto Assignment
+                    │
+                    ▼
+                Resolver
 
 ## Ticket Automation Flow
 

@@ -70,22 +70,19 @@ flowchart TD
     U[Employee / Resolver / Admin] --> F[Azure Static Web Apps]
     F --> B[FastAPI Backend]
     B --> DB[Aiven MySQL]
-
     B --> N[n8n Automation]
     N --> G[Google Gemini AI]
-
     G --> C[Category]
     G --> P[Priority]
     G --> S[AI Summary]
     G --> R[Suggested Response]
-
-    C --> N
-    P --> N
-    S --> N
-    R --> N
-
-    N --> A[Automatic Assignment]
+    C --> A[Automatic Assignment]
+    P --> A
+    S --> A
+    R --> A
     A --> RES[Resolver]
+
+
 ## Ticket Automation Flow
 
 Employee creates ticket

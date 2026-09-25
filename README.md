@@ -65,30 +65,34 @@ Deployment:
 
 ## System Architecture
 
-```mermaid
-flowchart TD
-    U[Employee / Resolver / Admin] --> F[Azure Static Web Apps]
-    F --> B[FastAPI Backend]
-    B --> DB[Aiven MySQL]
-    B --> N[n8n Automation]
-    N --> G[Google Gemini AI]
-    G --> C[Category]
-    G --> P[Priority]
-    G --> S[AI Summary]
-    G --> R[Suggested Response]
-    C --> A[Automatic Assignment]
-    P --> A
-    S --> A
-    R --> A
-    A --> RES[Resolver]
-    
-    So the end of the first diagram must look exactly like this:
-    
-    ```text
-        S --> A
-        R --> A
-        A --> RES[Resolver]
-
+Employee / Resolver / Admin
+            │
+            ▼
+     Azure Static Web Apps
+            │
+            ▼
+       FastAPI Backend
+            │
+      ┌─────┴─────┐
+      ▼           ▼
+ Aiven MySQL    REST APIs
+                    │
+                    ▼
+                   n8n
+                    │
+                    ▼
+              Google Gemini
+                    │
+          ┌─────────┼─────────┐
+          ▼         ▼         ▼
+       Category   Priority   Summary
+          │         │         │
+          └─────────┼─────────┘
+                    ▼
+             Auto Assignment
+                    │
+                    ▼
+                Resolver
 
 ## Ticket Automation Flow
 
@@ -208,7 +212,7 @@ FastAPI was used to build the backend REST APIs because it provides:
 - Request validation with Pydantic
 - Automatic Swagger API documentation
 - Easy integration with SQLAlchemy
-- Good support for asynchronous applications
+- Automatic interactive API documentation with Swagger UI
 
 ## Why MySQL?
 
@@ -243,3 +247,16 @@ https://supportflow-api-manju-2026-byh9esf5eefmgfch.indiasouthcentral-01.azurewe
 
 Database:
 Aiven MySQL
+
+Automation:
+n8n + Google Gemini
+
+
+### SupportFlow – AI-Powered IT Support Ticket Automation
+Python, FastAPI, MySQL, n8n, Google Gemini, REST APIs, Azure
+
+- Developed an AI-powered IT support platform with separate Employee, Resolver, and Admin workflows for managing support tickets.
+- Automated ticket classification, priority detection, summarization, suggested responses, and resolver assignment using Google Gemini and n8n.
+- Built REST APIs using FastAPI, SQLAlchemy, and MySQL with JWT-based role authentication and ticket lifecycle management.
+- Implemented employee–resolver communication, meeting scheduling, and real-time voice/video support.
+- Deployed the frontend and backend on Microsoft Azure with MySQL hosted on Aiven.

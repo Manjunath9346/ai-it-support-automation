@@ -81,6 +81,13 @@ flowchart TD
     S --> A
     R --> A
     A --> RES[Resolver]
+    
+    So the end of the first diagram must look exactly like this:
+    
+    ```text
+        S --> A
+        R --> A
+        A --> RES[Resolver]
 
 
 ## Ticket Automation Flow
